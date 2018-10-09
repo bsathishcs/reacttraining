@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React</title>
+</head>
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+
+
+<script type='text/babel'>
+
+class Hello extends React.Component{
+
+    render(){
+        let numbers = (this.props.numbers).map((num) => {
+                return <li>{num}</li>
+            })
+
+        return <div>
+            <h1>Hello {this.props.name}</h1>
+            <ul>
+            {numbers}
+            </ul>
+            <HelloTitle test={this.props.name}/>
+            <HelloWorld/>
+            </div>
+    }
+}
+
+function HelloTitle(props){
+    return <h1 style={{backgroundColor: 'gray'}}>Hello Title component {props.test}</h1>
+}
+
+function HelloWorld(props){
+    return <h1>Hello World component - {props.junk} </h1>
+}
+
+HelloWorld.defaultProps = {
+    junk : 'xyz'
+}
+
+    ReactDOM.render(<Hello name='Tempppp' numbers={[1, 2, 3]}/>, document.getElementById('app'));
+</script>
+
+<body>
+    <div id='app'></div>
+</body>
+
+</html>
